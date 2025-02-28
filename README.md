@@ -87,3 +87,9 @@ crontab -e
 0 02,06,10,14,18 * * * $HOME/wordpress-automation-GPT/run.sh
 ```
 This cronjob will run at 0th minute of the hours 2am, 6am, 10am, 2pm, 6pm everday (it runs 5 times a day). You can configure this however you like. You can use this website (https://crontab.guru/) to customize your Cron schedule. 
+
+## Run script normally (without CronJob)
+If you want to manually run the script without using a CronJob, you can just do
+```
+python bot.py
+```
