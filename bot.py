@@ -5,7 +5,7 @@ import dotenv
 import os
 import markdown
 import sys
-import urllib.parse
+import random
 
 dotenv.load_dotenv()
 
@@ -25,8 +25,9 @@ WORDPRESS_AUTH = (WORDPRESS_USERNAME, WORDPRESS_APPLICATION_PASSWORD)
 def get_unpublished_topic():
     # Check if there are any unpublished topics
     while 1:
-        topic_data = db_actions.get_unpublished_topic()
-        if topic_data is None:
+        # topic_data = db_actions.get_unpublished_topic()
+        topic_data = db_actions.get_all_unpublished_topics()
+        if not topic_data:
             print("No unpublished topics found, generating now...")
             # Generate topics
             # ai_generate.generate_topics()
@@ -37,6 +38,8 @@ def get_unpublished_topic():
                 print("Unable to generate topics. Exiting...")
                 sys.exit(1)
         else:
+            # Get a random topic from the list
+            topic_data = random.choice(topic_data)
             return topic_data
 
 def convert_to_html(markdown_content):

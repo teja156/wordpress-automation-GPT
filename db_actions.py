@@ -51,6 +51,18 @@ def get_unpublished_topic():
 
     return c.fetchone()
 
+
+# Get all unpublished topics from the db
+def get_all_unpublished_topics():
+    conn = sqlite3.connect('db.sqlite3')
+    c = conn.cursor()
+
+    c.execute('''
+        SELECT id, category, topic FROM topics WHERE published=FALSE
+    ''')
+
+    return c.fetchall()
+
 # Get all existing topics from the db
 def get_all_topics():
     conn = sqlite3.connect('db.sqlite3')
